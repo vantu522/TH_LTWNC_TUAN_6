@@ -1,0 +1,1 @@
+# Prop drilling: truyền prop từ cha xuống con qua nhiều tầng thoe thứ tự dẫn dến hiện tượng này
