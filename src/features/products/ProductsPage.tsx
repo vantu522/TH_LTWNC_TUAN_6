@@ -1,15 +1,11 @@
-import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { getProducts } from "./productsSlice";
+import React from "react";
+import { useAppDispatch } from "../../app/hooks";
 import { addToCart } from "../cart/cartSlice";
+import { useGetProductsQuery } from "../../services/productsApi";
 
 const ProductsPage = () => {
   const dispatch = useAppDispatch();
-const {products, loading, error} = useAppSelector((state)=> state.products)
-
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
+  const { data: products = [], isLoading: loading, error } = useGetProductsQuery();
 
   return (
   <div>
@@ -17,7 +13,7 @@ const {products, loading, error} = useAppSelector((state)=> state.products)
 
     {loading && <p>Đang tải...</p>}
 
-    {error && <p>{error}</p>}
+    {error && <p>Có lỗi xảy ra khi tải sản phẩm</p>}
 
    {products.map((product) => (
   <div key={product.id}>
